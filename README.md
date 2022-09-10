@@ -1,4 +1,4 @@
-# CustomMOTD
+# Custom Message Of The Day
 A mod for Gorilla Tag that lets you set a custom message of the day
 
 ![](https://user-images.githubusercontent.com/29258204/162978581-65a8f1b0-b579-4f93-b631-bd65d0d5a3eb.png)
