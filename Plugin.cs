@@ -15,7 +15,7 @@ namespace CustomMOTD
         private string message = "";
         private bool once = false;
         private bool setYellow = false;
-        private Material[] motdMat;
+        private Material motdMat = new Material(Shader.Find("Standard"));
 
         private void Awake()
         {
@@ -58,21 +58,15 @@ namespace CustomMOTD
         private void Update()
         {
             //This is so it's green instead of yellow :o
-            if(GorillaNetworking.GorillaComputer.instance.motdRenderer.materials != null && !once)
+            //motdRenderer and motdText no longer exists as a variable in GorillaComputer
+            //hang on im gonna find a workaround to make it set yellow or not
+            //it's not the right yellow but i mean it works
+            if (setYellow) 
             {
-                if(!setYellow)
-                    motdMat = GorillaNetworking.GorillaComputer.instance.motdRenderer.materials;
-                else
-                {
-                    Material[] mat = GorillaNetworking.GorillaComputer.instance.motdRenderer.materials;
-                    mat[0] = GorillaNetworking.GorillaComputer.instance.updatedMOTDMaterial;
-                    motdMat = mat;
-                }
-                once = true;
+                motdMat.color = Color.yellow;
+				GameObject.Find("Level/forest/lower level/StaticUnlit/motdscreen").GetComponent<MeshRenderer>().material = motdMat;
             }
-
-            GorillaNetworking.GorillaComputer.instance.motdText.text = message;
-            GorillaNetworking.GorillaComputer.instance.motdRenderer.materials = motdMat;
+            GameObject.Find("motdtext").GetComponent<Text>().text = message;
         }
     }
 }
